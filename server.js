@@ -3,10 +3,10 @@
 import { Server } from "boardgame.io/server";
 import serve from "koa-static";
 import path from "path";
-import { default as TienLen } from "./src/TienLen";
+import { default as Whist } from "./src/Whist";
 
 const PORT = process.env.PORT || 8000;
-const server = Server({ games: [TienLen] });
+const server = Server({ games: [Whist] });
 
 // Build path relative to the server.js file
 const frontEndAppBuildPath = path.resolve(__dirname, "./build");

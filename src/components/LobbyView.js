@@ -7,17 +7,16 @@
  */
 
 import React from "react";
-import GithubCorner from "react-github-corner";
 import { Lobby } from "boardgame.io/react";
 import { GAME_SERVER_URL, WEB_SERVER_URL, APP_PRODUCTION } from "../config";
-import { default as BoardTienLen } from "../TienLenBoard";
-import { default as GameTienLen } from "../TienLen";
+import { default as BoardWhist } from "../WhistBoard";
+import { default as GameWhist } from "../Whist";
 import Rules from "./Rules";
 import "./lobby.scss";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-GameTienLen.minPlayers = GameTienLen.maxPlayers = 4;
+GameWhist.minPlayers = GameWhist.maxPlayers = 4;
 
 const { protocol, hostname, port } = window.location;
 
@@ -28,17 +27,17 @@ let lobbyServer = APP_PRODUCTION
   ? `${protocol}//${hostname}:${port}`
   : WEB_SERVER_URL;
 
-const importedGames = [{ game: GameTienLen, board: BoardTienLen }];
+const importedGames = [{ game: GameWhist, board: BoardWhist }];
 
 function LobbyView() {
   return (
     <div style={{ padding: 50 }}>
       <Router>
         <div className="center-container">
-          <button className="tien-len">
+          <button className="whist">
             <Link to="/">Tiến Lên</Link>
           </button>
-          <button className="tien-len">
+          <button className="whist">
             <Link to="/rules">Rules</Link>
           </button>
         </div>
@@ -59,11 +58,6 @@ function LobbyView() {
           </Route>
         </Switch>
       </Router>
-      <GithubCorner
-        href="https://github.com/nguyenank/tien-len"
-        octoColor="#f7f3dc"
-        bannerColor="#bd4a39"
-      />
     </div>
   );
 }

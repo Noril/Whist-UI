@@ -1,12 +1,10 @@
-// src/TienLenBoard.js
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
 import GameArea from "./components/GameArea";
 import PlayerArea from "./components/PlayerArea";
 
-class TienLenBoard extends Component {
+class WhistBoard extends Component {
   render() {
     return (
       <div className="game">
@@ -19,11 +17,11 @@ class TienLenBoard extends Component {
   }
 }
 
-TienLenBoard.propTypes = {
+WhistBoard.propTypes = {
   G: PropTypes.object,
   ctx: PropTypes.object,
   moves: PropTypes.object,
   playerID: PropTypes.string,
 };
 
-export default TienLenBoard;
+export default WhistBoard;

@@ -25,13 +25,13 @@ export function validPlay(stagingArea, roundType, center, threeSpadesInHand) {
   }
 }
 
-export function tienLenPlay(G, ctx) {
+export function whistPlay(G, ctx) {
   let stagingArea = G.players[ctx.currentPlayer].stagingArea;
   const handType = validCombination(stagingArea);
   if (validChop(G.center, stagingArea)) {
     G.roundType = handType;
   } else if (
-    // not a valid tien len play
+    // not a valid whist play
     G.roundType !== handType ||
     compareHighest(stagingArea, G.center) !== 1 ||
     stagingArea.length !== G.center.length
@@ -96,9 +96,9 @@ function nextTurn(G, ctx) {
   ctx.events.endTurn({ next: nextPlayer });
   removeNulls = G.turnOrder.filter(x => x !== null);
   if (removeNulls.length === 1) {
-    // need to place new currentPlayer into tien len
+    // need to place new currentPlayer into whist
     ctx.events.setActivePlayers({
-      currentPlayer: { stage: "tienLen" },
+      currentPlayer: { stage: "whist" },
       others: { stage: "notTurn" },
     });
   }

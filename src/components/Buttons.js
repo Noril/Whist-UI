@@ -4,21 +4,21 @@ import PropTypes from "prop-types";
 import StagingAreaButtons from "./buttons/StagingAreaButtons";
 import PassButton from "./buttons/PassButton";
 import PlayCardsButton from "./buttons/PlayCardsButton";
-import TienLenButton from "./buttons/TienLenButton";
+import WhistButton from "./buttons/WhistButton";
 
 export default class Buttons extends PureComponent {
   render() {
     const currentPlayer = this.props.ctx.currentPlayer === this.props.playerID;
-    const tienLen =
-      this.props.ctx.activePlayers[this.props.ctx.currentPlayer] === "tienLen";
+    const whist =
+      this.props.ctx.activePlayers[this.props.ctx.currentPlayer] === "whist";
     const player = this.props.G.players[this.props.playerID];
     const playButton =
-      currentPlayer && tienLen ? (
-        <TienLenButton
+      currentPlayer && whist ? (
+        <WhistButton
           player={player}
           roundType={this.props.G.roundType}
           center={this.props.G.center}
-          tienLenPlay={this.props.moves.tienLenPlay}
+          whistPlay={this.props.moves.whistPlay}
         />
       ) : (
         <PlayCardsButton
@@ -31,7 +31,7 @@ export default class Buttons extends PureComponent {
         />
       );
     const passButton =
-      currentPlayer && !tienLen ? (
+      currentPlayer && !whist ? (
         <PassButton passTurn={this.props.moves.passTurn} />
       ) : (
         ""

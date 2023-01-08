@@ -1,8 +1,6 @@
-// src/TienLen.js
-
 import { PlayerView, Stage } from "boardgame.io/core";
 import { Suits, Ranks, Combinations } from "./constants";
-import { cardsToCenter, passTurn, tienLenPlay } from "./moves/cardPlayMoves";
+import { cardsToCenter, passTurn, whistPlay } from "./moves/cardPlayMoves";
 import {
   relocateCards,
   clearStagingArea,
@@ -11,19 +9,19 @@ import {
 import { compareCards } from "./moves/helper-functions/cardComparison";
 const _ = require("lodash");
 
-const TienLen = {
-  name: "tien-len",
+const Whist = {
+  name: "whist",
   setup: setUp,
   moves: {
     relocateCards: relocateCards,
     clearStagingArea: clearStagingArea,
     cardsToCenter: cardsToCenter,
     passTurn: passTurn,
-    tienLenPlay: tienLenPlay,
+    whistPlay: whistPlay,
     sortStagingArea: sortStagingArea,
   },
   stages: {
-    tienLen: { moves: { tienLenPlay } },
+    whist: { moves: { whistPlay } },
     notTurn: {
       moves: { relocateCards, clearStagingArea, sortStagingArea },
     },
@@ -86,4 +84,4 @@ function setUp(ctx) {
   };
 }
 
-export default TienLen;
+export default Whist;

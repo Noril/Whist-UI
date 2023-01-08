@@ -6,24 +6,24 @@ import {
   compareHighest,
 } from "../../moves/helper-functions/cardComparison";
 
-export default function TienLenButton({
+export default function WhistButton({
   player,
   roundType,
   center,
-  tienLenPlay,
+  whistPlay,
 }) {
   let stagingArea = player.stagingArea;
   const handType = validCombination(stagingArea);
   let classList;
-  let text = "Tien Len - ";
+  let text = "Whist - ";
   const invalidPlay =
     stagingArea.length === 0 || validCombination(stagingArea) === undefined;
   if (invalidPlay) {
     text += "Invalid Combination";
     classList = "disabled";
   } else if (validChop(center, stagingArea)) {
-    text += "Tien Len";
-    classList = "tien-len";
+    text += "Whist";
+    classList = "whist";
   } else if (
     roundType !== handType ||
     compareHighest(stagingArea, center) !== 1 ||
@@ -31,24 +31,24 @@ export default function TienLenButton({
   ) {
     text += stagingArea.length === 1 ? "Play Card" : "Play Cards";
   } else {
-    text += "Tien Len";
-    classList = "tien-len";
+    text += "Whist";
+    classList = "whist";
   }
   return (
     <button
       className={classList}
       disabled={invalidPlay}
-      key="tienLenPlay"
-      onClick={invalidPlay ? () => null : () => tienLenPlay()}
+      key="whistPlay"
+      onClick={invalidPlay ? () => null : () => whistPlay()}
     >
       {text}
     </button>
   );
 }
 
-TienLenButton.propTypes = {
+WhistButton.propTypes = {
   player: PropTypes.object,
   roundType: PropTypes.string,
   center: PropTypes.array,
-  tienLenPlay: PropTypes.func,
+  whistPlay: PropTypes.func,
 };

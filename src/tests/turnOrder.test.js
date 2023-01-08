@@ -1,7 +1,7 @@
 // src/tests/turnOrder.test.js
 
 import { Client } from "boardgame.io/client";
-import { default as TienLen } from "../TienLen";
+import { default as Whist } from "../Whist";
 import { Combinations } from "../constants";
 
 describe("Turn order", () => {
@@ -10,7 +10,7 @@ describe("Turn order", () => {
 
   beforeEach(() => {
     client = Client({
-      game: TienLen,
+      game: Whist,
       numPlayers: 4,
     });
     ctx = client.store.getState()["ctx"];
@@ -108,7 +108,7 @@ describe("Turn order", () => {
     });
   });
 
-  describe("tien len", () => {
+  describe("whist", () => {
     let G;
     let ctx;
 
@@ -128,69 +128,69 @@ describe("Turn order", () => {
       expect(ctx.activePlayers).toEqual({
         "0": "notTurn",
         "1": "notTurn",
-        "2": "tienLen",
+        "2": "whist",
         "3": "notTurn",
       });
     });
 
-    it("should persist as long as the player makes tien len moves", () => {
+    it("should persist as long as the player makes whist moves", () => {
       client.moves.passTurn();
       ctx = client.store.getState()["ctx"];
       expect(ctx.currentPlayer).toEqual("2");
       expect(ctx.activePlayers).toEqual({
         "0": "notTurn",
         "1": "notTurn",
-        "2": "tienLen",
+        "2": "whist",
         "3": "notTurn",
       });
 
       client.moves.relocateCards([{ rank: "4", suit: "D" }], "stagingArea");
-      client.moves.tienLenPlay();
+      client.moves.whistPlay();
       ctx = client.store.getState()["ctx"];
       expect(ctx.currentPlayer).toEqual("2");
       expect(ctx.activePlayers).toEqual({
         "0": "notTurn",
         "1": "notTurn",
-        "2": "tienLen",
+        "2": "whist",
         "3": "notTurn",
       });
 
       client.moves.relocateCards([{ rank: "4", suit: "H" }], "stagingArea");
-      client.moves.tienLenPlay();
+      client.moves.whistPlay();
       ctx = client.store.getState()["ctx"];
       expect(ctx.currentPlayer).toEqual("2");
       expect(ctx.activePlayers).toEqual({
         "0": "notTurn",
         "1": "notTurn",
-        "2": "tienLen",
+        "2": "whist",
         "3": "notTurn",
       });
     });
 
-    it("should end when the player makes a non-tien len move", () => {
+    it("should end when the player makes a non-whist move", () => {
       client.moves.passTurn();
       ctx = client.store.getState()["ctx"];
       expect(ctx.currentPlayer).toEqual("2");
       expect(ctx.activePlayers).toEqual({
         "0": "notTurn",
         "1": "notTurn",
-        "2": "tienLen",
+        "2": "whist",
         "3": "notTurn",
       });
 
       client.moves.relocateCards([{ rank: "4", suit: "D" }], "stagingArea");
-      client.moves.tienLenPlay();
+      client.moves.whistPlay();
       ctx = client.store.getState()["ctx"];
       expect(ctx.currentPlayer).toEqual("2");
       expect(ctx.activePlayers).toEqual({
         "0": "notTurn",
         "1": "notTurn",
-        "2": "tienLen",
+        "2": "whist",
         "3": "notTurn",
       });
 
       client.moves.relocateCards([{ rank: "4", suit: "S" }], "stagingArea");
-      client.moves.tienLenPlay();
+      client.moves.whistPlay();
       ctx = client.store.getState()["ctx"];
       G = client.store.getState()["G"];
       expect(ctx.currentPlayer).toEqual("3");

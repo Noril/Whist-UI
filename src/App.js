@@ -2,8 +2,8 @@
 
 import { Client } from "boardgame.io/react";
 import { Debug } from "boardgame.io/debug";
-import { default as TienLen } from "./TienLen";
-import { default as TienLenBoard } from "./TienLenBoard";
+import { default as Whist } from "./Whist";
+import { default as WhistBoard } from "./WhistBoard";
 import { SocketIO } from "boardgame.io/multiplayer";
 
 import { APP_PRODUCTION, WEB_SERVER_URL } from "./config";
@@ -15,9 +15,9 @@ let server = APP_PRODUCTION
   : WEB_SERVER_URL;
 
 const App = Client({
-  game: TienLen,
+  game: Whist,
   numPlayers: 4,
-  board: TienLenBoard,
+  board: WhistBoard,
   multiplayer: SocketIO({ server }),
   debug: { impl: Debug },
 });
